@@ -21,18 +21,14 @@ void RTTTLParser::parse(std::string t_arq) {
     std::getline(is,str,',');
     str.erase(0,2);
     m_duration = strToInt(str);
-    std::cout << m_duration << std::endl; 
     std::getline(is,str,',');
     str.erase(0,2);
-    std::cout << m_octave << std::endl; 
     m_octave = strToInt(str);
     std::getline(is,str,':');
     str.erase(0,2);
-    std::cout << m_tempo << std::endl; 
     m_tempo = strToInt(str);
     /*	leitura das notas e duracaoes */
-    while(std::getline(is,str,',')) {
-		std::cout << str << std::endl;
+    while (std::getline(is,str,',')) {
     	Tone tone;
     	bool dot = false;
    		/*	durancao da nota */
@@ -496,9 +492,7 @@ void RTTTLParser::parse(std::string t_arq) {
 		   		}
 		   	}   		
    		} else if (str[0] == 'g' || str[0] == 'G') {
-   			std::cout << str[0] << std::endl;
 			if (str[1] == '#') {
-				std::cout << "#" << std::endl;
    				str.erase(1,1);
    				if (str.size() == 1) {
    					switch (m_octave) {
@@ -557,9 +551,7 @@ void RTTTLParser::parse(std::string t_arq) {
 		   			dot = true;
 		   			str.erase(1,1);	
 		   		}
-		   		std::cout << str.size() << std::endl;
 		   		if (str.size() == 1) {
-		   			std::cout << "defualt" << std::endl;
 			   		switch (m_octave) {
 			   			case 4:
 			   				tone.note = G4;
@@ -574,7 +566,6 @@ void RTTTLParser::parse(std::string t_arq) {
 			   				tone.note = G7;
 			   				break;
 			   		}
-			   		std::cout << tone.note << std::endl;
 		   		} else {
 			   		switch (((int)str[1]-48)) {
 			   			case 4:
@@ -596,12 +587,11 @@ void RTTTLParser::parse(std::string t_arq) {
    		if (str[str.size()-1] == '.') {
    			dot = true;	
    		}
-   		std::cout << tone.note << ' ' << tone.duration << '\n';
    		m_notes.push_back(tone);
+   		/* caso haja um ponto adicionar meia nota */
    		if (dot) {
    			tone.duration *= 2;
    			m_notes.push_back(tone);
-   			std::cout << tone.note << ' ' << tone.duration << '\n';
    		}
     }
 }
