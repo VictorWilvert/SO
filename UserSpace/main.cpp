@@ -1,14 +1,11 @@
 
-#include "pwm_music.h"
+#include "rtttl_parser.h"
+#include "buzzer_player.h"
 #include "notes.h"
 #include <iostream>
-#include "rtttl_parser.h"
 
 int main(void) {
-	RTTTLParser p("rtttl.txt");
-	PWMMusic pwm;
-	while (1) {
-		pwm.playMusic(p.notes());
-	}
+	RTTTLParser parser;
+	BuzzerPlayer buzzer;
 	return 0;
 }
