@@ -1,5 +1,5 @@
 
-#include "pwm_music.h"
+#include "buzzer_player.h"
 
 BuzzerPlayer::BuzzerPlayer() {
 	/* abre os arquivos usadas para alterar a frequencia e duty cycle */
