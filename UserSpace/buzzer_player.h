@@ -43,6 +43,17 @@ class BuzzerPlayer {
      *  @brief  Retorna o tempo/bpm usado.
      */
     unsigned int tempo() const { return m_tempo; }
+  
+    /**
+     *  @brief  Altera o divisor do tocador.
+     *  @param  t_divisor O novo divisor.
+     */
+    void divisor(unsigned int t_divisor) { m_divisor = t_divisor; }
+
+    /**
+     *  @brief  Retorna o divisor usado.
+     */
+    unsigned int divisor() const { return m_divisor; }
     
     /**
      *  @brief	Toca uma musica, ou seja um vetor de tom.
