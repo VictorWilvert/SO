@@ -63,9 +63,10 @@ class BuzzerPlayer {
      */
     void writeDuty(unsigned int t_duty);
 
-    unsigned int m_tempo;     /**< Tempo/bpm do tocador */
-    int m_duty;               /**< Duty cycle do PWM    */ 
-    int m_freq;               /**< Frequencia do PWM    */
+    unsigned int m_divisor;     /**< divisor para o bpm     */    
+    unsigned int m_tempo;       /**< Tempo/bpm do tocador   */
+    int m_duty;                 /**< Duty cycle do PWM      */ 
+    int m_freq;                 /**< Frequencia do PWM      */
 
 };  /* class BuzzerPlayer */
 
