@@ -11,10 +11,17 @@ RTTTLParser::RTTTLParser(std::string t_arq) {
 
 void RTTTLParser::parse(std::string t_arq) {
 	std::ifstream fd(t_arq);
-	/*	le todo o arquivo para uma std::string */
+	if (fd.fail()) {
+		m_name = "";
+		m_duration = -1;
+		m_ocatve = -1;
+		m_tempo = -1;
+		m_notes.clear();
+	}
+	/* le todo o arquivo para uma std::string */
 	std::string data((std::istreambuf_iterator<char>(fd)),
-					 (std::istreambuf_iterator<char>()));
-	/*	separando o texto atraves do uso de tokens */
+			(std::istreambuf_iterator<char>()));
+	/* separando o texto atraves do uso de tokens */
     	std::istringstream is(data);
     	std::getline(is,m_name,':');	
     	std::string str;
@@ -27,11 +34,11 @@ void RTTTLParser::parse(std::string t_arq) {
     	std::getline(is,str,':');
     	str.erase(0,2);
     	m_tempo = strToInt(str);
-    	/*	leitura das notas e duracaoes */
+    	/* leitura das notas e duracaoes */
     	while (std::getline(is,str,',')) {
     		Tone tone;
     		bool dot = false;
-   		/*	durancao da nota */
+   		/* durancao da nota */
    		if (str[0] < 48 || str[0] > 57) {
    			tone.duration = m_duration;
    		} else if (str[0] == '1' || str[1] == '6') {
