@@ -42,7 +42,7 @@ class BuzzerPlayer {
     /**
      *  @brief  Retorna o tempo/bpm usado.
      */
-    unsigned int getTempo() const { return m_tempo; }
+    unsigned int tempo() const { return m_tempo; }
 
    	/**
   	 *	@brief	Toca uma musica, ou seja um vetor de tom.
