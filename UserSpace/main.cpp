@@ -13,9 +13,9 @@ int main(void) {
 	std::cout << "As musicas de exemplo se encontram no diretorio 'examples'" << std::endl;
 	std::cout << std::endl;
 	while (1) {
-		std::cout << "Qual musica se deseja ouvir: ";
+		std::cout << "Qual musica se deseja ouvir [passe o arquivo]: ";
 		std::cin >> music;
-		parser.parse("examples/halloween.txt");
+		parser.parse(music);
 		std::cout << "Quantas vezes: ";
 		std::cin >> count;
 		buzzer.tempo(parser.tempo());
