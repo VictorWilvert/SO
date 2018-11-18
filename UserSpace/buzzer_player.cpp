@@ -31,6 +31,7 @@ void BuzzerPlayer::playTone(Tone t_tone) {
 void BuzzerPlayer::playMusic(std::vector<Tone> t_music) {
 	/* toca toda a musica passada */
 	for (const auto& tone : t_music) {
+		std::cout << "here" << std::endl;
 		playTone(tone);
 	}
 }
