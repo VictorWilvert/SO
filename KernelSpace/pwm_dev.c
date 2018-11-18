@@ -248,13 +248,13 @@ void __exit pwm_cleanup(void)
 	if (pwm.loaded) {	
 		pwm_deactivate(&pwm);
 	}
+	sysfs_remove_group(&pwm.dev->kobj,&pwm_attribute_group);
 	if (pwm.dev) {
 		device_unregister(pwm.dev);
 	}
 	iounmap(gpio_reg);
 	iounmap(pwm_reg);
 	iounmap(clk_reg);
-	sysfs_remove_group(&pwm.dev->kobj,&pwm_attribute_group);
 	class_unregister(&pwm_class);
 	printk(KERN_INFO "PWM: stopping done.");
 }
