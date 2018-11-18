@@ -5,7 +5,7 @@
 #include <iostream>
 
 int main(void) {
-	RTTTLParser parser("rtttl_examples/AC\ DC\ -\ Highway\ To\ Hell.txt");
+	RTTTLParser parser("examples/halloween.txt");
 	BuzzerPlayer buzzer;
 	buzzer.tempo(parser.tempo());
 	while (1) {
