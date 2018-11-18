@@ -24,7 +24,7 @@ void BuzzerPlayer::playTone(Tone t_tone) {
 	//std::this_thread::sleep_for(std::chrono::milliseconds(delay / 2));
 	writeFreq(t_tone.note);
 	std::this_thread::sleep_for(std::chrono::milliseconds(duration));
-	//writeFreq(0);
+	writeFreq(0);
 	//std::this_thread::sleep_for(std::chrono::milliseconds(delay / 2));
 }
 
