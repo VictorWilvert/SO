@@ -11,6 +11,7 @@ RTTTLParser::RTTTLParser(std::string t_arq) {
 
 void RTTTLParser::parse(std::string t_arq) {
 	std::ifstream fd(t_arq);
+	std::cout << "parse: " << t_arq << std::endl;
 	if (fd.fail()) {
 		m_name = "";
 		m_duration = -1;
@@ -18,6 +19,7 @@ void RTTTLParser::parse(std::string t_arq) {
 		m_tempo = -1;
 		m_notes.clear();
 	}
+	std::cout << "valid" <<std::endl;
 	/* le todo o arquivo para uma std::string */
 	std::string data((std::istreambuf_iterator<char>(fd)),
 			(std::istreambuf_iterator<char>()));
