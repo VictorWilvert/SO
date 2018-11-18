@@ -5,7 +5,7 @@
 #include <iostream>
 
 int main(void) {
-	RTTTLParser parser("Ac\ Dc\ -\ Back\ In\ Black.txt");
+	RTTTLParser parser("rtttl_examples/Ac Dc - Back In Black.txt");
 	BuzzerPlayer buzzer;
 	buzzer.tempo(parser.tempo());
 	while (1) {
