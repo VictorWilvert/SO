@@ -1,5 +1,6 @@
 
 #include "rtttl_parser.h"
+#include <iostream>
 
 RTTTLParser::RTTTLParser() 
 	: m_name{""}, m_duration{-1}, m_octave{-1}, m_tempo{-1}
