@@ -16,7 +16,7 @@
 
 #define CLASS_NAME "pwm_device"
 /* enderecos usadas, tirados o datashet */
-#define BCM2837_PERI_BASE			0x3F000000
+#define BCM2837_PERI_BASE				0x3F000000
 #define GPIO_BASE					(BCM2837_PERI_BASE + 0x200000)
 #define PWM_BASE 					(BCM2837_PERI_BASE + 0x20C000)
 #define CLOCK_BASE					(BCM2837_PERI_BASE + 0x101000)
@@ -37,8 +37,8 @@ static void __iomem *clk_reg;
 #define	PWM_CTL  					(pwm_reg+(0*4))
 #define	PWM_RNG1 					(pwm_reg+(4*4))
 #define	PWM_DAT1 					(pwm_reg+(5*4))
-#define	PWMCLK_CNTL 				(clk_reg+(40*4))
-#define	PWMCLK_DIV  				(clk_reg+(41*4))
+#define	PWMCLK_CNTL 					(clk_reg+(40*4))
+#define	PWMCLK_DIV  					(clk_reg+(41*4))
 
 struct pwm_device {
 	u32 duty;
@@ -48,7 +48,7 @@ struct pwm_device {
 	int loaded:1;
 	struct device *dev;
 	u32 divisor;		
-	u32 mcf; 			/* frequencia maxima comum */
+	u32 mcf; 			/* frequencia maxima comum / limite */
 } pwm;
 
 static int pwm_set_clk(struct pwm_device *dev) {
@@ -88,6 +88,7 @@ static int pwm_activate(struct pwm_device *dev) {
 	}
 	/* Definicao do duty cycle do PWM */
 	RNG = dev->mcf/dev->frequency;
+	/**/
 	DAT = RNG*dev->duty/100;
 	if (RNG < 1) {
 		dev_err(dev->dev, "RNG is out of range: %ld<1\n", RNG);
@@ -145,7 +146,6 @@ static ssize_t duty_set(struct device *d,
 	if (ret == 0) {
 		if (new_duty > 0 && new_duty < 100) {
 			dev->duty = new_duty;
-			dev->mode = MODE_PWM;
 			if (dev->immediate) {
 				pwm_activate(dev);
 			}
@@ -183,7 +183,6 @@ static ssize_t freq_set(struct device *d,
 	ret = kstrtol(buf, 0, &new_freq);
 	if (ret == 0) {
 		dev->frequency 	= new_freq;
-		dev->mode 		= MODE_PWM;
 		if (dev->immediate) {
 			pwm_activate(dev);
 		}
@@ -218,7 +217,7 @@ int __init pwm_init(void)
 	ret = class_register(&pwm_class);
 	if (ret < 0) {
 		pr_err("Unable to register class");
-		return ENIVAL;
+		return -EINVAL;
 	}
 	/* Cria o device PWM e inicializa algumas configuracoes */
 	pwm.immediate = 1;
@@ -228,7 +227,7 @@ int __init pwm_init(void)
 	pwm.dev = device_create(&pwm_class,&platform_bus,MKDEV(0,0),&pwm,"pwm_module");
 	if (IS_ERR(pwm.dev)) {
 		pr_err("device_create failed\n");
-		return ENIVAL;/**/
+		return -EINVAL;
 	}
 	/* Cria o sysfs para o device PWM */
 	ret = sysfs_create_group(&pwm.dev->kobj,&pwm_attribute_group);
