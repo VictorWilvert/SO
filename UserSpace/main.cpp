@@ -13,13 +13,13 @@ int main(void) {
 	std::cout << "As musicas de exemplo se encontram no diretorio 'examples'" << std::endl;
 	std::cout << std::endl;
 	while (1) {
-		
 		std::cout << "Qual musica se deseja ouvir: ";
 		std::cin >> music;
 		parser.parse(music);
 		std::cout << "Quantas vezes: ";
 		std::cin >> count;
 		buzzer.tempo(parser.tempo());
+		std::cout << count << std::endl;
 		for(auto i = 0;i < count;++i) {
 			buzzer.playMusic(parser.notes());
 		}
