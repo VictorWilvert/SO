@@ -3,9 +3,9 @@
 
 BuzzerPlayer::BuzzerPlayer() {
 	/* abre os arquivos usadas para alterar a frequencia e duty cycle */
-	m_duty = open("/sys/class/rpi-pwm/pwm_dev/duty",O_WRONLY|O_APPEND);
+	m_duty = open("/sys/class/pwm_device/pwm_module/duty",O_WRONLY|O_APPEND);
 	write(m_duty,"50",2);
-	m_freq = open("/sys/class/rpi-pwm/pwm_dev/frequency",O_WRONLY|O_APPEND);
+	m_freq = open("/sys/class/pwm_device/pwm_module/frequency",O_WRONLY|O_APPEND);
 	write(m_freq,"0",1);
 }
 
