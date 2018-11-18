@@ -17,21 +17,21 @@
  */
 class BuzzerPlayer {
   public:
-  	/*
+    /*
   	 *	@brief	Construtor do BuzzerPlayer que cuida de inicializar o modulo PWM.
   	 */
-  	BuzzerPlayer();
+    BuzzerPlayer();
 
   	/*
   	 *	@brief	Destrutor do BuzzerPlayer que cuida de finalizar o modulo PWM.
   	 */
-  	~BuzzerPlayer();
+    ~BuzzerPlayer();
 
   	/*
   	 *	@brief	Toca um Tone no buzzer.		
   	 *	@param	t_tone	O tom a ser tocado.
   	 */
-  	void playTone(Tone t_tone);
+    void playTone(Tone t_tone);
 
     /**
      *  @brief  Altera o tempo/bpm do tocador.
