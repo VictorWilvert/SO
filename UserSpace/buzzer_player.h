@@ -27,10 +27,10 @@ class BuzzerPlayer {
      */
     ~BuzzerPlayer();
 
-  	/**
-  	 *	@brief	Toca um Tone no buzzer.		
-  	 *	@param	t_tone	O tom a ser tocado.
-  	 */
+    /**
+     *	@brief	Toca um Tone no buzzer.
+     *	@param	t_tone	O tom a ser tocado.
+     */
     void playTone(Tone t_tone);
 
     /**
@@ -43,11 +43,11 @@ class BuzzerPlayer {
      *  @brief  Retorna o tempo/bpm usado.
      */
     unsigned int tempo() const { return m_tempo; }
-
-   	/**
-  	 *	@brief	Toca uma musica, ou seja um vetor de tom.
-  	 *	@param	t_music	A musica a ser tocada.
-  	 */
+    
+    /**
+     *  @brief	Toca uma musica, ou seja um vetor de tom.
+     *  @param	t_music	A musica a ser tocada.
+     */
     void playMusic(std::vector<Tone> t_music);
 
   private:
