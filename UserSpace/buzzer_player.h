@@ -28,8 +28,8 @@ class BuzzerPlayer {
     ~BuzzerPlayer();
 
     /**
-     *	@brief	Toca um Tone no buzzer.
-     *	@param	t_tone	O tom a ser tocado.
+     *  @brief	Toca um Tone no buzzer.
+     *  @param	t_tone	O tom a ser tocado.
      */
     void playTone(Tone t_tone);
 
