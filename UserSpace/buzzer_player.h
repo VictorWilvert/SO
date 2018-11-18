@@ -10,24 +10,24 @@
 #include <unistd.h>
 #include "notes.h"      /* Notacao das notas e do tom */
 
-/* 
+/**
  *	@brief Classe responsavel pela leitura da musica e interpretacao dela
  *			   para passagem para o modulo PWM, com o intuito de gerar o som no
  *			   buzzer.
  */
 class BuzzerPlayer {
   public:
-    /*
-  	 *	@brief	Construtor do BuzzerPlayer que cuida de inicializar o modulo PWM.
-  	 */
+    /**
+     *  @brief	Construtor do BuzzerPlayer que cuida de inicializar o modulo PWM.
+     */
     BuzzerPlayer();
-
-  	/*
-  	 *	@brief	Destrutor do BuzzerPlayer que cuida de finalizar o modulo PWM.
-  	 */
+    
+    /**
+     *  @brief	Destrutor do BuzzerPlayer que cuida de finalizar o modulo PWM.
+     */
     ~BuzzerPlayer();
 
-  	/*
+  	/**
   	 *	@brief	Toca um Tone no buzzer.		
   	 *	@param	t_tone	O tom a ser tocado.
   	 */
@@ -37,7 +37,7 @@ class BuzzerPlayer {
      *  @brief  Altera o tempo/bpm do tocador.
      *  @param  t_tempo O novo tempo/bpm.
      */
-    void setTempo(unsigned int t_tempo) { m_tempo = t_tempo; }
+    void tempo(unsigned int t_tempo) { m_tempo = t_tempo; }
 
     /**
      *  @brief  Retorna o tempo/bpm usado.
