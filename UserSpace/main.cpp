@@ -19,6 +19,7 @@ int main(void) {
 		std::cout << "Quantas vezes: ";
 		std::cin >> count;
 		buzzer.tempo(parser.tempo());
+		std::cout << "vt size(): " << parser.notes().size() << std::endl;
 		std::cout << count << std::endl;
 		for(unsigned int i = 0;i < count;++i) {
 			buzzer.playMusic(parser.notes());
