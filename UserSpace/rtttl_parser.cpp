@@ -588,10 +588,12 @@ void RTTTLParser::parse(std::string t_arq) {
    			dot = true;	
    		}
    		m_notes.push_back(tone);
+	    	std::cout << "tone: " << tone.note << " " << tone.duration << std::endl;
    		/* caso haja um ponto adicionar meia nota */
    		if (dot) {
    			tone.duration *= 2;
    			m_notes.push_back(tone);
+			std::cout << "tone: " << tone.note << " " << tone.duration << std::endl;
    		}
     }
 }
