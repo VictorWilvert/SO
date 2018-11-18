@@ -14,7 +14,7 @@ void RTTTLParser::parse(std::string t_arq) {
 	if (fd.fail()) {
 		m_name = "";
 		m_duration = -1;
-		m_ocatve = -1;
+		m_octave = -1;
 		m_tempo = -1;
 		m_notes.clear();
 	}
