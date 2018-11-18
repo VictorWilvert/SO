@@ -19,7 +19,7 @@ BuzzerPlayer::~BuzzerPlayer() {
 void BuzzerPlayer::playTone(Tone t_tone) {
 	/* Calculo da duracao da uma nota */
 	int duration = 1000 / float(t_tone.duration);
-	int delay = ((60 / float(m_tempo))*1000 - duration) / 2;
+	int delay = ((60 / float(m_tempo))*1000 - duration) / m_divisor;
 	/* Toca a nota */
 	std::cout << "tempo: " << m_tempo << std::endl;
 	std::cout << "delay: " << delay << std::endl;
