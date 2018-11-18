@@ -16,22 +16,22 @@ void RTTTLParser::parse(std::string t_arq) {
 	std::string data((std::istreambuf_iterator<char>(fd)),
 					 (std::istreambuf_iterator<char>()));
 	/*	separando o texto atraves do uso de tokens */
-    std::istringstream is(data);
-    std::getline(is,m_name,':');	
-    std::string str;
-    std::getline(is,str,',');
-    str.erase(0,2);
-    m_duration = strToInt(str);
-    std::getline(is,str,',');
-    str.erase(0,2);
-    m_octave = strToInt(str);
-    std::getline(is,str,':');
-    str.erase(0,2);
-    m_tempo = strToInt(str);
-    /*	leitura das notas e duracaoes */
-    while (std::getline(is,str,',')) {
-    	Tone tone;
-    	bool dot = false;
+    	std::istringstream is(data);
+    	std::getline(is,m_name,':');	
+    	std::string str;
+    	std::getline(is,str,',');
+    	str.erase(0,2);
+    	m_duration = strToInt(str);
+    	std::getline(is,str,',');
+    	str.erase(0,2);
+    	m_octave = strToInt(str);
+    	std::getline(is,str,':');
+    	str.erase(0,2);
+    	m_tempo = strToInt(str);
+    	/*	leitura das notas e duracaoes */
+    	while (std::getline(is,str,',')) {
+    		Tone tone;
+    		bool dot = false;
    		/*	durancao da nota */
    		if (str[0] < 48 || str[0] > 57) {
    			tone.duration = m_duration;
@@ -589,19 +589,17 @@ void RTTTLParser::parse(std::string t_arq) {
    			dot = true;	
    		}
    		m_notes.push_back(tone);
-	    	std::cout << "tone: " << tone.note << " " << tone.duration << std::endl;
    		/* caso haja um ponto adicionar meia nota */
    		if (dot) {
    			tone.duration *= 2;
    			m_notes.push_back(tone);
-			std::cout << "tone: " << tone.note << " " << tone.duration << std::endl;
    		}
-    }
+    	}
 }
 
 int RTTTLParser::strToInt(std::string t_str) {
 	std::stringstream ss(t_str);
 	int ret;
-    ss >> ret;
-    return ret;
+	ss >> ret;
+	return ret;
 }
