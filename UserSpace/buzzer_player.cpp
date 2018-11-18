@@ -1,5 +1,6 @@
 
 #include "buzzer_player.h"
+#include <iostream>
 
 BuzzerPlayer::BuzzerPlayer() {
 	/* abre os arquivos usadas para alterar a frequencia e duty cycle */
@@ -18,8 +19,9 @@ BuzzerPlayer::~BuzzerPlayer() {
 void BuzzerPlayer::playTone(Tone t_tone) {
 	/* Calculo da duracao da uma nota */
 	int duration = 1000 / float(t_tone.duration);
-	int delay = ((60 / m_tempo)*1000 - duration) / 2;
+	int delay = ((60 / float(m_tempo))*1000 - duration) / 2;
 	/* Toca a nota */
+	std::cout << "delay: " << delay << std::endl;
 	writeFreq(0);
 	std::this_thread::sleep_for(std::chrono::milliseconds(delay / 2));
 	writeFreq(t_tone.note);
