@@ -18,14 +18,14 @@ BuzzerPlayer::~BuzzerPlayer() {
 void BuzzerPlayer::playTone(Tone t_tone) {
 	/* Calculo da duracao da uma nota */
 	int duration = 1000 / float(t_tone.duration);
-	int delay = ((60 / m_tempo) - duration) / 2;
+	int delay = ((60 / m_tempo)*1000 - duration) / 2;
 	/* Toca a nota */
-	//writeFreq(0);
-	//std::this_thread::sleep_for(std::chrono::milliseconds(delay / 2));
+	writeFreq(0);
+	std::this_thread::sleep_for(std::chrono::milliseconds(delay / 2));
 	writeFreq(t_tone.note);
 	std::this_thread::sleep_for(std::chrono::milliseconds(duration));
 	writeFreq(0);
-	//std::this_thread::sleep_for(std::chrono::milliseconds(delay / 2));
+	std::this_thread::sleep_for(std::chrono::milliseconds(delay / 2));
 }
 
 void BuzzerPlayer::playMusic(std::vector<Tone> t_music) {
