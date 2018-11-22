@@ -28,11 +28,12 @@ static void __iomem *clk_reg;
 /* macro para escrita no registrador das GPIOs */
 #define GPIO_REG(g) (gpio_reg+((g/10)*4))
 /* macro para alteracao da funcao das GPIOs */
-#define SET_GPIO_ALT(g,a) 										\
-		__raw_writel(											\
-			(((a)<=3?(a)+4:(a)==4?3:2)<<(((g)%10)*3))			\
-			| (__raw_readl(GPIO_REG(g)) & (~(7<<(((g)%10)*3)))),\
+#define SET_GPIO_ALT(g,a)							\
+		__raw_writel(							\
+			(((a)<=3?(a)+4:(a)==4?3:2)<<(((g)%10)*3))		\
+			| (__raw_readl(GPIO_REG(g)) & (~(7<<(((g)%10)*3)))),	\
 			GPIO_REG(g))
+/* macros desenvolvidas usando informacoes do datashet do bcm2837 e forums do Raspberry Pi */
 /* macros para escrita nos registradores do PWM */
 #define	PWM_CTL  					(pwm_reg+(0*4))
 #define	PWM_RNG1 					(pwm_reg+(4*4))
@@ -72,7 +73,7 @@ static int pwm_set_clk(struct pwm_device *dev) {
 static int pwm_activate(struct pwm_device *dev) {
 	ssize_t ret = 0;
 	unsigned long RNG, DAT;
-	/* Defini a funcao alternativa para a GPIO18 */
+	/* Define a funcao alternativa para a GPIO18 */
 	printk(KERN_INFO "PWM: pwm_activate...");
 	SET_GPIO_ALT(18,0);
 	udelay(10);
@@ -88,7 +89,6 @@ static int pwm_activate(struct pwm_device *dev) {
 	}
 	/* Definicao do duty cycle do PWM */
 	RNG = dev->mcf/dev->frequency;
-	/**/
 	DAT = RNG*dev->duty/100;
 	if (RNG < 1) {
 		dev_err(dev->dev, "RNG is out of range: %ld<1\n", RNG);
