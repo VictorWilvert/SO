@@ -16,6 +16,7 @@ load:
 	insmod ./$(TARGET_MODULE).ko
 chmod:
 	chmod 666 /sys/class/pwm_device/pwm_module/frequency 
+	chmod 666 /sys/class/pwm_device/pwm_module/duty
 unload:
 	rmmod ./$(TARGET_MODULE).ko
 endif
