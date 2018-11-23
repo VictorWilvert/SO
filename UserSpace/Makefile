@@ -1,4 +1,4 @@
-PROJECT=bar
+PROJECT=rtttl
 SOURCES_DIR := ./
 INCLUDE_DIR := ./
 CXXSOURCE=$(shell find $(SOURCES_DIR) -name "*.cc" -type f )
