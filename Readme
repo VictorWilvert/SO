@@ -1,0 +1,41 @@
+/******************************************************************************/
+/*                                                                            */
+/*                     Um driver para o PWM do Raspberry Pi                   */
+/*                          e seu uso para gerar sons                         */
+/*                                                                            */
+/******************************************************************************/
+
+Este projeto e divido em duas partes, uma em espaco de kernel, que e o driver pa
+ra o modulo PWM do Raspberry Pi e se encontra na pasta KernelSpace, e a outra em
+espaco de usuario, que e um programa que toca musicas usando o driver da outra p
+arte e se encontra na pasta UserSpace. Para poder usar estes codigos primeiro e 
+necessario possuir um kernel do linux compilado como demonstrado a seguir. 
+
+/******************************************************************************/
+/*                                                                            */
+/*                            Compilacao do kernel                            */
+/*                                                                            */
+/******************************************************************************/
+
+A compilacao inteira aqui e feita dentro do Raspberry Pi modelo 3b+ usando o Ras
+pbian padrao que pode ser baixado neste link https://www.raspberrypi.org/downloa
+ds/raspbian/, tambem e possivel fazer compilacao cruzada seguindo o link https:/
+/www.raspberrypi.org/documentation/linux/kernel/building.md, que tambem tem as i
+nformacoes desta compilacao mostrada aqui.
+
+Primeiro se instala o Git e as dependencias de compilacao:
+$ sudo apt-get install git bc
+Depois se baixam as fontes:
+$ git clone --depth=1 https://github.com/raspberrypi/linux
+A seguir configura-se o kernel na configuracao padrao:
+$ cd linux
+$ KERNEL=kernel7
+$ make bcm2709_defconfig 
+Entao se compila e instala o kernel, pode lever muito tempo(3 horas):
+$ make -j4 zImage modules dtbs
+$ sudo make modules_install
+$ sudo cp arch/arm/boot/dts/*.dtb /boot/
+$ sudo cp arch/arm/boot/dts/overlays/*.dtb* /boot/overlays/
+$ sudo cp arch/arm/boot/dts/overlays/README /boot/overlays/
+$ sudo cp arch/arm/boot/zImage /boot/$KERNEL.img
+Feito isto temos uma imagem valida do kernel compilado do Raspberry Pi
