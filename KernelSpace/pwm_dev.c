@@ -33,13 +33,13 @@ static void __iomem *clk_reg;
 			(((a)<=3?(a)+4:(a)==4?3:2)<<(((g)%10)*3))		\
 			| (__raw_readl(GPIO_REG(g)) & (~(7<<(((g)%10)*3)))),	\
 			GPIO_REG(g))
-/* macros desenvolvidas usando informacoes do datashet do bcm2837 e forums do Raspberry Pi */
 /* macros para escrita nos registradores do PWM */
 #define	PWM_CTL  					(pwm_reg+(0*4))
 #define	PWM_RNG1 					(pwm_reg+(4*4))
 #define	PWM_DAT1 					(pwm_reg+(5*4))
 #define	PWMCLK_CNTL 					(clk_reg+(40*4))
 #define	PWMCLK_DIV  					(clk_reg+(41*4))
+/* macros desenvolvidas usando informacoes do datashet do bcm2837 e forums do Raspberry Pi */
 
 struct pwm_device {
 	u32 duty;
@@ -123,7 +123,7 @@ static int pwm_deactivate(struct pwm_device *dev) {
 	return 0;
 }
 static ssize_t duty_get(struct device *d,
-		struct device_attribute *attr, char *buf)
+			struct device_attribute *attr, char *buf)
 {
 	ssize_t ret;
 	struct pwm_device *dev = dev_get_drvdata(d);
@@ -134,9 +134,9 @@ static ssize_t duty_get(struct device *d,
 }
 
 static ssize_t duty_set(struct device *d,
-						struct device_attribute *attr, 
-						const char *buf, 
-						size_t count)
+			struct device_attribute *attr, 
+			const char *buf, 
+			size_t count)
 {
 	ssize_t ret = 0;
 	long new_duty;
@@ -160,8 +160,8 @@ static ssize_t duty_set(struct device *d,
 static DEVICE_ATTR(duty,(S_IWUSR | S_IRUGO),duty_get,duty_set);
 
 static ssize_t freq_get(struct device *d,
-						struct device_attribute *attr, 
-						char *buf)
+			struct device_attribute *attr, 
+			char *buf)
 {
 	ssize_t ret;
 	struct pwm_device *dev = dev_get_drvdata(d);
@@ -172,9 +172,9 @@ static ssize_t freq_get(struct device *d,
 }
 
 static ssize_t freq_set(struct device *d,
-						struct device_attribute *attr,
-						const char *buf,
-						size_t count)
+			struct device_attribute *attr,
+			const char *buf,
+			size_t count)
 {
 	ssize_t ret = 0;
 	long new_freq;
@@ -248,10 +248,10 @@ void __exit pwm_cleanup(void)
 	if (pwm.loaded) {	
 		pwm_deactivate(&pwm);
 	}
-	sysfs_remove_group(&pwm.dev->kobj,&pwm_attribute_group);
 	if (pwm.dev) {
 		device_unregister(pwm.dev);
 	}
+	sysfs_remove_group(&pwm.dev->kobj,&pwm_attribute_group);
 	iounmap(gpio_reg);
 	iounmap(pwm_reg);
 	iounmap(clk_reg);
