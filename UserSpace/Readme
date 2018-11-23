@@ -1,0 +1,30 @@
+
+/******************************************************************************/
+/*                                                                            */
+/*                    Aplicacao para tocar musica com PWM                     */
+/*                                                                            */
+/******************************************************************************/
+
+Nesta parte temos a aplicacao em espaco de usuario responsavel por definir o som
+a ser gerado e passa-lo ao modulo PWM. A implementacao esta dividida em 3 partes
+, BuzzerPlayer, que comunicao com o driver, RTTTLParser, que analiza o arquivo d
+a musica e a main do programa.
+
+/******************************************************************************/
+/*                                                                            */
+/*                                Compilacao                                  */
+/*                                                                            */
+/******************************************************************************/
+
+Para compilar deve-se usar o comando:
+$ make
+Para limpar os arquivos de compilacao deve-se usar:
+$ make clean
+Para executar o programa deve-se usar:
+$ make run
+
+o funcionamento do programa e simples, passe o caminho para um arquivo contendo
+uma musica e o numero e vezes que se deseja que ela fique tocando. Exemplo:
+$ Qual musica se deseja ouvir [passe o arquivo]: examples/batman.txt
+$ Quantas vezes: 1
+Assim a musica do batman toca uma vez. 
