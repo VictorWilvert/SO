@@ -213,7 +213,7 @@ static struct class pwm_class = {
 int __init pwm_init(void)
 {
 	printk(KERN_INFO "PWM: staring...");
-	ssize_t ret = 0;
+	ssize_t ret;
 	/* Registra a classe para o device PWM */
 	ret = class_register(&pwm_class);
 	if (ret < 0) {
