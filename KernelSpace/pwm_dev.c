@@ -107,6 +107,7 @@ static int pwm_activate(struct pwm_device *dev) {
 	__raw_writel(0x81, PWM_CTL);
 	udelay(10);
 	dev->active = 1;
+	dev->loaded = 1;
 	printk(KERN_INFO "PWM: pwm_activate done");
 	return 0;
 }
@@ -248,13 +249,13 @@ void __exit pwm_cleanup(void)
 	if (pwm.loaded) {	
 		pwm_deactivate(&pwm);
 	}
-	if (pwm.dev) {
-		device_unregister(pwm.dev);
-	}
 	sysfs_remove_group(&pwm.dev->kobj,&pwm_attribute_group);
 	iounmap(gpio_reg);
 	iounmap(pwm_reg);
 	iounmap(clk_reg);
+	if (pwm.dev) {
+		device_unregister(pwm.dev);
+	}
 	class_unregister(&pwm_class);
 	printk(KERN_INFO "PWM: stopping done.");
 }
@@ -263,7 +264,7 @@ void __exit pwm_cleanup(void)
 module_init(pwm_init);
 module_exit(pwm_cleanup);
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Victor Wilvert Antunes");
+MODULE_AUTHOR("Victor Wilvert Antunes & Vilson Garcia");
 MODULE_ALIAS("platform:BCM2837_pwm");
 
 
