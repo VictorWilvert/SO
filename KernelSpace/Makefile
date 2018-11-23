@@ -1,7 +1,6 @@
 TARGET_MODULE:=pwm_dev
 # If we are running by kernel building system
 ifneq ($(KERNELRELEASE),)
-	$(TARGET_MODULE)-objs := main.o device_file.o
 	obj-m := $(TARGET_MODULE).o
 # If we running without kernel build system
 else
