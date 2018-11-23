@@ -1,0 +1,40 @@
+/******************************************************************************/
+/*                                                                            */
+/*                        Driver de Dispositivo PWM                           */
+/*                                                                            */
+/******************************************************************************/
+
+Este e um driver de dispositivo voltado para o modulo PWM do Raspberry Pi model 
+3b+, tendo a saida no pino GPIO18. A documentacao do modulo se encontra junto 
+com o codigo, porem aqui esta um rapido resumo do que se pode fazer, e possivel
+alterar a razao ciclica e a frequencia do modulo atraves dos arquivos /sys/class
+/pwm_device/pwm_module/duty e /sys/class/pwm_device/pwm_module/frequency usando
+a chamda de sistema 'write' e pode-se ler os valores com a chamada 'read' dos me
+smos arquivos.
+
+/******************************************************************************/
+/*                                                                            */
+/*                                 Compilacao                                 */
+/*                                                                            */
+/******************************************************************************/
+
+Para compilar o codigo deve-se usar o comando:
+$ make
+Para remover os arquivos de compilacao deve-se usar o comando:
+$ make clean
+Para modificar as permissoes dos arquivos do driver deve-se usar o comando:
+$ sudo make chmod
+ou 
+# make chmod
+Para carregar o driver deve-se usar o comando:
+$ sudo make load
+ou 
+# make load
+Para descarregar o driver deve-se usar o comando:
+$ sudo make unload
+ou 
+# make unload
+Um exemplo normal de uso para carregar o modulo e:
+$ make
+$ sudo make load
+$ sudo make chmod
